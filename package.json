@@ -5,6 +5,9 @@
   "main": "index.js",
   "author": "Chris Thielen <github@sandgnat.com>",
   "license": "MIT",
+  "scripts": {
+    "release": "release"
+  },
   "bin": {
     "cypress-runner": "./cypress-runner.js"
   },
