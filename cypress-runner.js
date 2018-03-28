@@ -28,5 +28,10 @@ const { fork } = require('child_process');
 const browserSync = fork('./node_modules/.bin/serve', ['-n', '-s', '-p', port, path]);
 const cypress = fork('./node_modules/.bin/cypress', [cypressCmd]);
 
+process.on('SIGINT', function() {
+  browserSync.kill();
+  cypress.kill();
+});
+
 browserSync.on('exit', () => cypress.kill());
 cypress.on('exit', (code) => { browserSync.kill(); process.exit(code) });
