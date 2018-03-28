@@ -1,0 +1,14 @@
+{
+  "name": "@uirouter/cypress-runner",
+  "version": "1.0.0",
+  "description": "Script to serve an SPA and launch cypress",
+  "main": "index.js",
+  "author": "Chris Thielen <github@sandgnat.com>",
+  "license": "MIT",
+  "bin": {
+    "cypress-runner": "./cypress-runner.js"
+  },
+  "dependencies": {
+    "yargs": "^11.0.0"
+  }
+}
