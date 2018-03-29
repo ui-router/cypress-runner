@@ -25,8 +25,8 @@ if (!fs.existsSync(path)) {
 }
 
 const { fork } = require('child_process');
-const browserSync = fork('./node_modules/.bin/serve', ['-n', '-s', '-p', port, path]);
-const cypress = fork('./node_modules/.bin/cypress', [cypressCmd]);
+const browserSync = fork('npx', ['serve', '-n', '-s', '-p', port, path]);
+const cypress = fork('npx', ['cypress', cypressCmd]);
 
 process.on('SIGINT', function() {
   browserSync.kill();
