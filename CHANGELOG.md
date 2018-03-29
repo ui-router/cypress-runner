@@ -1,3 +1,13 @@
+## 1.0.4 (2018-03-29)
+[Compare `@uirouter/cypress-runner` versions 1.0.3 and 1.0.4](https://github.com/ui-router/cypress-runner/compare/1.0.3...1.0.4)
+
+### Features
+
+* **runner:** Manually walk up filesystem looking for node_modules/.bin/serve (and cypress) ([ab81837](https://github.com/ui-router/cypress-runner/commit/ab81837))
+
+
+
+
 ## 1.0.3 (2018-03-29)
 [Compare `@uirouter/cypress-runner` versions 1.0.2 and 1.0.3](https://github.com/ui-router/cypress-runner/compare/1.0.2...1.0.3)
 
