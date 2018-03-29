@@ -1,37 +1,42 @@
-#!/usr/bin/env node
-
 const fs = require('fs');
-const { resolve }  = require('path');
-const yargs = require('yargs')
-    .usage('Usage: $0 [open|run] [options]')
-    .command('open', 'Open the cypress UI')
-    .command('run', 'Runs the cypress test suite')
-    .demandCommand(1, 'Specify either "open" or "run"')
-    .option('path', {
-      description: 'The path to serve files from',
-      default: 'dist',
-    })
-    .option('port', {
-      description: 'The port to serve files from',
-      default: 4000,
-    }).argv;
+const { resolve } = require('path');
 
-const { path, port } = yargs;
-const [ cypressCmd ] = yargs._;
+function findBinary(binaryName, path) {
+  const binary = resolve(path, 'node_modules', '.bin', binaryName);
+  if (fs.existsSync(binary)) {
+    return binary;
+  }
 
-if (!fs.existsSync(path)) {
-  console.error(`${resolve(path)} doesn't exist, can't serve files`);
-  process.exit();
+  const parent = resolve(path, '..');
+  if (parent === path) {
+    throw new Error(`Couldn't find **/node_modules/.bin/${binaryName} in parents of ${path.resolve()}`);
+  }
+
+  return findBinary(binaryName, parent);
 }
 
-const { fork } = require('child_process');
-const browserSync = fork('npx', ['serve', '-n', '-s', '-p', port, path]);
-const cypress = fork('npx', ['cypress', cypressCmd]);
+function launchCypress(cypressCmd, path, port) {
+  if (!fs.existsSync(path)) {
+    console.error(`${resolve(path)} doesn't exist, can't serve files`);
+    process.exit();
+  }
 
-process.on('SIGINT', function() {
-  browserSync.kill();
-  cypress.kill();
-});
+  const { fork } = require('child_process');
+  const serveBinary = findBinary('serve', '.');
+  const cypressBinary = findBinary('cypress', '.');
+  const browserSync = fork(serveBinary, [ '-n', '-s', '-p', port, path ]);
+  const cypress = fork(cypressBinary, [ cypressCmd ]);
 
-browserSync.on('exit', () => cypress.kill());
-cypress.on('exit', (code) => { browserSync.kill(); process.exit(code) });
+  process.on('SIGINT', function () {
+    browserSync.kill();
+    cypress.kill();
+  });
+
+  browserSync.on('exit', () => cypress.kill());
+  cypress.on('exit', (code) => {
+    browserSync.kill();
+    process.exit(code)
+  });
+}
+
+module.exports.launchCypress = launchCypress;

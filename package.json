@@ -13,7 +13,7 @@
     "release": "release"
   },
   "bin": {
-    "cypress-runner": "./cypress-runner.js"
+    "cypress-runner": "./cypress-runner-cli.js"
   },
   "dependencies": {
     "cypress": "^2.1.0",
