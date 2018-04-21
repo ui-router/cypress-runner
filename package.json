@@ -17,10 +17,10 @@
   },
   "dependencies": {
     "cypress": "^2.1.0",
-    "serve": "^6.5.3",
+    "serve": "^6.5.5",
     "yargs": "^11.0.0"
   },
   "devDependencies": {
-    "@uirouter/publish-scripts": "^2.3.1"
+    "@uirouter/publish-scripts": "^2.3.6"
   }
 }
