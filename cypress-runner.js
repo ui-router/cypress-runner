@@ -1,7 +1,9 @@
 const fs = require('fs');
 const { resolve } = require('path');
+const portfinder = require('portfinder');
 const waitOn = require('wait-on');
 const nodeCleanup = require('node-cleanup');
+const { fork } = require('child_process');
 
 function findBinary(binaryName, path) {
   const binary = resolve(path, 'node_modules', '.bin', binaryName);
@@ -17,70 +19,85 @@ function findBinary(binaryName, path) {
   return findBinary(binaryName, parent);
 }
 
-function launchCypress(cypressCmd, path, port) {
+const log = (message) => console.log(`cypress-runner: ${message}`);
+const error = (message) => console.log(`cypress-runner: ${message}`)
+
+function launchCypress(cypressCmd, path, desiredPort) {
   if (!fs.existsSync(path)) {
-    console.error(`${resolve(path)} doesn't exist, can't serve files`);
+    error(`${resolve(path)} doesn't exist, can't serve files`);
     process.exit();
   }
 
-  let serve, cypress;
+  let serve_process, cypress_process;
 
   const cleanupServe = () => {
-    if (serve) {
-      console.log('Terminating serve...');
-      serve.kill();
+    if (serve_process) {
+      log('Terminating serve...');
+      serve_process.kill();
     }
-    serve = null;
+    serve_process = null;
   };
 
   const cleanupCypress = () => {
-    if (cypress) {
-      console.log('Terminating cypress...')
-      cypress.kill();
+    if (cypress_process) {
+      log('Terminating cypress...')
+      cypress_process.kill();
     }
-    cypress = null;
+    cypress_process = null;
   };
 
   const cleanup = () => {
     cleanupServe();
     cleanupCypress();
-  }
+  };
 
-  const { fork } = require('child_process');
-  const serveBinary = findBinary('serve', '.');
-  let serveArgs = [ '-n', '-s', '-p', port, path ];
-
-  const cypressBinary = findBinary('cypress', '.');
-
-  console.log(`Launching ${[serveBinary].concat(serveArgs).join(' ')}`);
-  serve = fork(serveBinary, serveArgs);
-
-  waitOn({ resources: [`http://localhost:${port}`], window: 500, timeout: 30000}, () => {
-    console.log(`detected http service ready on port ${port}`)
-    console.log(`Launching ${[cypressBinary].concat(cypressCmd).join(' ')}`);
-    cypress = fork(cypressBinary, [ cypressCmd ]);
-    cypress.on('exit', (code) => {
-      console.log(`Cypress completed with exit code ${code}`);
-      cypress = null;
-      cleanupServe();
-      process.exit(code)
-    });
-  });
-
-  nodeCleanup((exitCode, signal) => {
-    if (signal) {
-      console.log(`cypress-runner exiting via signal ${signal}`);
-    } else if (exitCode) {
-      console.log(`cypress-runner exiting with exit code ${exitCode}`);
+  portfinder.basePort = desiredPort;
+  portfinder.getPort((err, port) => {
+    if (err) {
+      error(err);
+      process.exit(-1);
     }
-    cleanup();
-  });
 
-  serve.on('exit', (code) => {
-    console.log(`Serve completed with exit code ${code}`);
-    serve = null;
-    cleanupCypress();
-  });
+    const baseUrl = `http://localhost:${port}`;
+
+    const serveBinary = findBinary('serve', '.');
+    const serveArgs = [ '-n', '-s', '-p', port, path ];
+
+    const cypressBinary = findBinary('cypress', '.');
+    const cypressArgs = [cypressCmd];
+    const cypressEnv = { CYPRESS_baseUrl: baseUrl };
+
+    log(`Launching ${[serveBinary].concat(serveArgs).join(' ')}`);
+    serve_process = fork(serveBinary, serveArgs);
+
+    waitOn({ resources: [baseUrl], window: 500, timeout: 30000}, () => {
+      log(`Detected serve is ready on port ${port}`)
+      log(`Launching CYPRESS_baseUrl=${baseUrl} ${[cypressBinary].concat(cypressArgs).join(' ')}`);
+
+      cypress_process = fork(cypressBinary, [ cypressCmd ], { env: cypressEnv});
+      cypress_process.on('exit', (code) => {
+        log(`Cypress completed with exit code ${code}`);
+        cypress_process = null;
+        cleanupServe();
+        process.exit(code)
+      });
+    });
+
+    nodeCleanup((exitCode, signal) => {
+      if (signal) {
+        log(`exiting via signal ${signal}`);
+      } else if (exitCode) {
+        log(`exiting with exit code ${exitCode}`);
+      }
+      cleanup();
+    });
+
+    serve_process.on('exit', (code) => {
+      log(`Serve completed with exit code ${code}`);
+      serve_process = null;
+      cleanupCypress();
+    });
+  })
 }
 
 module.exports.launchCypress = launchCypress;

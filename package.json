@@ -18,6 +18,7 @@
   "dependencies": {
     "cypress": "^2.1.0",
     "node-cleanup": "^2.1.2",
+    "portfinder": "^1.0.13",
     "serve": "^6.5.5",
     "wait-on": "^2.1.0",
     "yargs": "^11.0.0"
