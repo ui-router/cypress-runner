@@ -1,3 +1,13 @@
+## 1.0.7 (2018-04-30)
+[Compare `@uirouter/cypress-runner` versions 1.0.6 and 1.0.7](https://github.com/ui-router/cypress-runner/compare/1.0.6...1.0.7)
+
+### Features
+
+* **runner:** Use portfinder to use "next open port". Add better logging ([6d7eb86](https://github.com/ui-router/cypress-runner/commit/6d7eb86))
+
+
+
+
 ## 1.0.6 (2018-04-30)
 [Compare `@uirouter/cypress-runner` versions 1.0.5 and 1.0.6](https://github.com/ui-router/cypress-runner/compare/1.0.5...1.0.6)
 
