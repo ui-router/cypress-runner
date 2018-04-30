@@ -1,3 +1,13 @@
+## 1.0.6 (2018-04-30)
+[Compare `@uirouter/cypress-runner` versions 1.0.5 and 1.0.6](https://github.com/ui-router/cypress-runner/compare/1.0.5...1.0.6)
+
+### Features
+
+* **runner:** Use node-cleanup for better cleanup. Use wait-on for more reliable test runs ([ec04982](https://github.com/ui-router/cypress-runner/commit/ec04982))
+
+
+
+
 ## 1.0.5 (2018-04-21)
 [Compare `@uirouter/cypress-runner` versions 1.0.4 and 1.0.5](https://github.com/ui-router/cypress-runner/compare/1.0.4...1.0.5)
 
