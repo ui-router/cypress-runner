@@ -1,5 +1,7 @@
 const fs = require('fs');
 const { resolve } = require('path');
+const waitOn = require('wait-on');
+const nodeCleanup = require('node-cleanup');
 
 function findBinary(binaryName, path) {
   const binary = resolve(path, 'node_modules', '.bin', binaryName);
@@ -21,21 +23,63 @@ function launchCypress(cypressCmd, path, port) {
     process.exit();
   }
 
+  let serve, cypress;
+
+  const cleanupServe = () => {
+    if (serve) {
+      console.log('Terminating serve...');
+      serve.kill();
+    }
+    serve = null;
+  };
+
+  const cleanupCypress = () => {
+    if (cypress) {
+      console.log('Terminating cypress...')
+      cypress.kill();
+    }
+    cypress = null;
+  };
+
+  const cleanup = () => {
+    cleanupServe();
+    cleanupCypress();
+  }
+
   const { fork } = require('child_process');
   const serveBinary = findBinary('serve', '.');
-  const cypressBinary = findBinary('cypress', '.');
-  const browserSync = fork(serveBinary, [ '-n', '-s', '-p', port, path ]);
-  const cypress = fork(cypressBinary, [ cypressCmd ]);
+  let serveArgs = [ '-n', '-s', '-p', port, path ];
 
-  process.on('SIGINT', function () {
-    browserSync.kill();
-    cypress.kill();
+  const cypressBinary = findBinary('cypress', '.');
+
+  console.log(`Launching ${[serveBinary].concat(serveArgs).join(' ')}`);
+  serve = fork(serveBinary, serveArgs);
+
+  waitOn({ resources: [`http://localhost:${port}`], window: 500, timeout: 30000}, () => {
+    console.log(`detected http service ready on port ${port}`)
+    console.log(`Launching ${[cypressBinary].concat(cypressCmd).join(' ')}`);
+    cypress = fork(cypressBinary, [ cypressCmd ]);
+    cypress.on('exit', (code) => {
+      console.log(`Cypress completed with exit code ${code}`);
+      cypress = null;
+      cleanupServe();
+      process.exit(code)
+    });
   });
 
-  browserSync.on('exit', () => cypress.kill());
-  cypress.on('exit', (code) => {
-    browserSync.kill();
-    process.exit(code)
+  nodeCleanup((exitCode, signal) => {
+    if (signal) {
+      console.log(`cypress-runner exiting via signal ${signal}`);
+    } else if (exitCode) {
+      console.log(`cypress-runner exiting with exit code ${exitCode}`);
+    }
+    cleanup();
+  });
+
+  serve.on('exit', (code) => {
+    console.log(`Serve completed with exit code ${code}`);
+    serve = null;
+    cleanupCypress();
   });
 }
 
