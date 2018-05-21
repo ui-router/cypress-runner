@@ -2302,6 +2302,10 @@ progress@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.0.tgz#8a1be366bf8fc23db2bd23f10c6fe920b4389d1f"
 
+promise-timeout@1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/promise-timeout/-/promise-timeout-1.3.0.tgz#d1c78dd50a607d5f0a5207410252a3a0914e1014"
+
 ps-tree@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/ps-tree/-/ps-tree-1.1.0.tgz#b421b24140d6203f1ed3c76996b4427b08e8c014"
@@ -2620,8 +2624,8 @@ send@0.16.2:
     statuses "~1.4.0"
 
 serve@^6.5.5:
-  version "6.5.6"
-  resolved "https://registry.yarnpkg.com/serve/-/serve-6.5.6.tgz#579136688f80f6bf4a618ca8e8cba10dfb4d95e3"
+  version "6.5.7"
+  resolved "https://registry.yarnpkg.com/serve/-/serve-6.5.7.tgz#2b3709a3db1ef8a1e7f017d1c074b0d7e7ed18db"
   dependencies:
     args "4.0.0"
     basic-auth "2.0.0"
@@ -2643,8 +2647,9 @@ serve@^6.5.5:
     opn "5.3.0"
     path-is-inside "1.0.2"
     path-type "3.0.0"
+    promise-timeout "1.3.0"
     send "0.16.2"
-    update-check "1.3.2"
+    update-check "1.5.0"
 
 set-blocking@^2.0.0:
   version "2.0.0"
@@ -3061,9 +3066,9 @@ unpipe@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/unpipe/-/unpipe-1.0.0.tgz#b2bf4ee8514aae6165b4817829d21b2ef49904ec"
 
-update-check@1.3.2:
-  version "1.3.2"
-  resolved "https://registry.yarnpkg.com/update-check/-/update-check-1.3.2.tgz#460f9e9ab24820367f3edbeb4d4142d9936ff171"
+update-check@1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/update-check/-/update-check-1.5.0.tgz#9faf2d4ff3c50bcf058df61cebf690c8b484e7bc"
   dependencies:
     registry-auth-token "3.3.2"
     registry-url "3.1.0"
