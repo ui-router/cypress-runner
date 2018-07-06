@@ -1,3 +1,8 @@
+## 1.0.8 (2018-07-06)
+[Compare `@uirouter/cypress-runner` versions 1.0.7 and 1.0.8](https://github.com/ui-router/cypress-runner/compare/1.0.7...1.0.8)
+
+
+
 ## 1.0.7 (2018-04-30)
 [Compare `@uirouter/cypress-runner` versions 1.0.6 and 1.0.7](https://github.com/ui-router/cypress-runner/compare/1.0.6...1.0.7)
 
