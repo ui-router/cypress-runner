@@ -10,6 +10,9 @@
     "url": "https://github.com/ui-router/cypress-runner.git"
   },
   "scripts": {
+    "build": "true",
+    "test": "npm run test:downstream",
+    "test:downstream": "test_downstream_projects",
     "release": "release"
   },
   "bin": {
