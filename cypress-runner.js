@@ -22,7 +22,7 @@ function findBinary(binaryName, path) {
 const log = (message) => console.log(`cypress-runner: ${message}`);
 const error = (message) => console.log(`cypress-runner: ${message}`)
 
-function launchCypress(cypressCmd, path, desiredPort) {
+function launchCypress(cypressCmd, path, desiredPort, nospa) {
   if (!fs.existsSync(path)) {
     error(`${resolve(path)} doesn't exist, can't serve files`);
     process.exit();
@@ -61,7 +61,7 @@ function launchCypress(cypressCmd, path, desiredPort) {
     const baseUrl = `http://localhost:${port}`;
 
     const serveBinary = findBinary('serve', '.');
-    const serveArgs = [ '-n', '-s', '-p', port, path ];
+    const serveArgs = [ '-n', nospa ? null : '-s', '-p', port, path ].filter(x => !!x);
 
     const cypressBinary = findBinary('cypress', '.');
     const cypressArgs = [cypressCmd];

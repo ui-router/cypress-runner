@@ -10,12 +10,15 @@ const yargs = require('yargs')
       description: 'The path to serve files from',
       default: 'dist',
     })
+    .option('nospa', {
+      description: 'Do not serve /index.html on 404s',
+    })
     .option('port', {
       description: 'The port to serve files from',
       default: 4000,
     }).argv;
 
-const { path, port } = yargs;
+const { path, port, nospa } = yargs;
 const [ cypressCmd ] = yargs._;
 
-launchCypress(cypressCmd, path, port);
+launchCypress(cypressCmd, path, port, nospa);
