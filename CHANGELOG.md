@@ -1,3 +1,13 @@
+## 1.0.9 (2018-07-21)
+[Compare `@uirouter/cypress-runner` versions 1.0.8 and 1.0.9](https://github.com/ui-router/cypress-runner/compare/1.0.8...1.0.9)
+
+### Features
+
+* **runner:** Disable serve's -s (single mode/SPA mode) using cypress-runner --nospa ([62832f4](https://github.com/ui-router/cypress-runner/commit/62832f4))
+
+
+
+
 ## 1.0.8 (2018-07-06)
 [Compare `@uirouter/cypress-runner` versions 1.0.7 and 1.0.8](https://github.com/ui-router/cypress-runner/compare/1.0.7...1.0.8)
 
