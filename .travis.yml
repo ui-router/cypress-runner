@@ -11,4 +11,5 @@ git:
 cache:
   directories:
   - node_modules
+  - ".cache"
   - ".downstream_cache"
