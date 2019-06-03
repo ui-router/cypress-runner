@@ -22,7 +22,7 @@
     "cypress": "^3.1.4",
     "node-cleanup": "^2.1.2",
     "portfinder": "^1.0.20",
-    "serve": "^10.1.1",
+    "serve": "^11.0.1",
     "wait-on": "^3.2.0",
     "yargs": "^12.0.5"
   },
