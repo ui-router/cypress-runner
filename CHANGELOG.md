@@ -1,3 +1,18 @@
+## 1.0.11 (2019-09-03)
+[Compare `@uirouter/cypress-runner` versions 1.0.10 and 1.0.11](https://github.com/ui-router/cypress-runner/compare/1.0.10...1.0.11)
+
+### Bug Fixes
+
+* **travis:** use service: xvfb instead of launching it manually.  install libgconf debian package ([400f047](https://github.com/ui-router/cypress-runner/commit/400f047))
+
+
+### Features
+
+* **package:** update dependencies cypress[@3](https://github.com/3).4.1, portfinder[@1](https://github.com/1).0.23, serve[@11](https://github.com/11).1.0, wait-on[@3](https://github.com/3).3.0, yargs[@14](https://github.com/14).0.0 ([98ff166](https://github.com/ui-router/cypress-runner/commit/98ff166))
+
+
+
+
 ## 1.0.10 (2019-01-09)
 [Compare `@uirouter/cypress-runner` versions 1.0.9 and 1.0.10](https://github.com/ui-router/cypress-runner/compare/1.0.9...1.0.10)
 
