@@ -1,3 +1,13 @@
+## 1.0.13 (2019-10-06)
+[Compare `@uirouter/cypress-runner` versions 1.0.12 and 1.0.13](https://github.com/ui-router/cypress-runner/compare/1.0.12...1.0.13)
+
+### Bug Fixes
+
+* **cypress-runner:** use failing exit code if directory to serve is not found ([a28670e](https://github.com/ui-router/cypress-runner/commit/a28670e))
+
+
+
+
 ## 1.0.12 (2019-09-03)
 [Compare `@uirouter/cypress-runner` versions 1.0.10 and 1.0.12](https://github.com/ui-router/cypress-runner/compare/1.0.10...1.0.12)
 
