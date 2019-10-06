@@ -25,7 +25,7 @@ const error = (message) => console.log(`cypress-runner: ${message}`)
 function launchCypress(cypressCmd, path, desiredPort, nospa) {
   if (!fs.existsSync(path)) {
     error(`${resolve(path)} doesn't exist, can't serve files`);
-    process.exit();
+    process.exit(-1);
   }
 
   let serve_process, cypress_process;
