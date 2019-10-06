@@ -55,10 +55,10 @@
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
 
-"@uirouter/publish-scripts@^2.3.29":
-  version "2.3.29"
-  resolved "https://registry.yarnpkg.com/@uirouter/publish-scripts/-/publish-scripts-2.3.29.tgz#ff20c5c2ceb7476dfdb2d3885cd10cf9435c3e31"
-  integrity sha512-I6nzISpasB8rtl6WxIvmRUrAXrN2GukFlkp70+i9Av/m/fbUS9J37YSwb+qlIYqxigVwMTusFfYdWJqEQ6w6KA==
+"@uirouter/publish-scripts@^2.3.30":
+  version "2.3.30"
+  resolved "https://registry.yarnpkg.com/@uirouter/publish-scripts/-/publish-scripts-2.3.30.tgz#d436cf94cffe95ad510e4ea5e9967aba759ae411"
+  integrity sha512-DNkfmQjLpCGQIwvZts6auABF7fa/+t0ZHqHp21RsP6v+AfszEhXuYjQ1+mfkXeLulxjmW0Kax4dcjZ0fzfIrMw==
   dependencies:
     conventional-changelog "^3.1.10"
     conventional-changelog-ui-router-core "^1.4.2"
