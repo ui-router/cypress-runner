@@ -27,6 +27,6 @@
     "yargs": "^14.0.0"
   },
   "devDependencies": {
-    "@uirouter/publish-scripts": "^2.3.37"
+    "@uirouter/publish-scripts": "^2.3.38"
   }
 }
