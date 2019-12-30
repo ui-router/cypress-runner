@@ -24,7 +24,7 @@
     "portfinder": "^1.0.24",
     "serve": "^11.2.0",
     "wait-on": "^3.3.0",
-    "yargs": "^14.0.0"
+    "yargs": "^15.0.2"
   },
   "devDependencies": {
     "@uirouter/publish-scripts": "^2.3.42"
