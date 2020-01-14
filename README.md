@@ -31,6 +31,6 @@ cypress-runner run --path dist
 Opens the cypress UI to interactively run e2d tests against the SPA located in `dist`:
 
 ```
-cypress-runner run --path dist
+cypress-runner open --path dist
 ```
 
