@@ -23,7 +23,7 @@
     "node-cleanup": "^2.1.2",
     "portfinder": "^1.0.24",
     "serve": "^11.2.0",
-    "wait-on": "^3.3.0",
+    "wait-on": "^4.0.0",
     "yargs": "^15.0.2"
   },
   "devDependencies": {
