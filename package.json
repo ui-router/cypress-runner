@@ -1,6 +1,6 @@
 {
   "name": "@uirouter/cypress-runner",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "Script to serve an SPA and launch cypress",
   "main": "index.js",
   "author": "Chris Thielen <github@sandgnat.com>",
