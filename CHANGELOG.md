@@ -1,3 +1,9 @@
+# 1.1.0 (2020-02-25)
+[Compare `@uirouter/cypress-runner` versions 1.0.15 and 1.1.0](https://github.com/ui-router/cypress-runner/compare/1.0.15...1.1.0)
+
+Update to cypress v4.x
+
+
 ## 1.0.15 (2020-02-02)
 [Compare `@uirouter/cypress-runner` versions 1.0.14 and 1.0.15](https://github.com/ui-router/cypress-runner/compare/1.0.14...1.0.15)
 
