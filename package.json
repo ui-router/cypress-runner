@@ -19,7 +19,7 @@
     "cypress-runner": "./cypress-runner-cli.js"
   },
   "dependencies": {
-    "cypress": "4.0.2",
+    "cypress": "4.1.0",
     "node-cleanup": "^2.1.2",
     "portfinder": "^1.0.24",
     "serve": "11.3.0",
