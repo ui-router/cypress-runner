@@ -19,12 +19,12 @@
     "cypress-runner": "./cypress-runner-cli.js"
   },
   "dependencies": {
-    "cypress": "5.3.0",
+    "cypress": "5.4.0",
     "node-cleanup": "^2.1.2",
     "portfinder": "^1.0.28",
     "serve": "11.3.2",
     "wait-on": "^5.2.0",
-    "yargs": "^16.0.3"
+    "yargs": "^16.1.0"
   },
   "devDependencies": {
     "@uirouter/publish-scripts": "^2.5.4"
