@@ -1,6 +1,6 @@
 {
   "name": "@uirouter/cypress-runner",
-  "version": "1.1.0",
+  "version": "3.0.0",
   "description": "Script to serve an SPA and launch cypress",
   "main": "index.js",
   "author": "Chris Thielen <github@sandgnat.com>",
@@ -19,7 +19,7 @@
     "cypress-runner": "./cypress-runner-cli.js"
   },
   "dependencies": {
-    "cypress": "9.1.0",
+    "cypress": "10.3.0",
     "node-cleanup": "^2.1.2",
     "portfinder": "^1.0.28",
     "serve": "13.0.2",
@@ -27,6 +27,6 @@
     "yargs": "^17.2.1"
   },
   "devDependencies": {
-    "@uirouter/publish-scripts": "^2.5.5"
+    "@uirouter/publish-scripts": "^2.6.0"
   }
 }
